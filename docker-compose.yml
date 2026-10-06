@@ -1,0 +1,22 @@
+services:
+  drive:
+    build: .
+    restart: unless-stopped
+    environment:
+      MAGNETOR_ADMIN_USER: ${MAGNETOR_ADMIN_USER:-admin}
+      MAGNETOR_ADMIN_PASSWORD: ${MAGNETOR_ADMIN_PASSWORD:?set MAGNETOR_ADMIN_PASSWORD in .env (min 12 characters)}
+      MAGNETOR_COOKIE_SECURE: ${MAGNETOR_COOKIE_SECURE:-false}
+      MAGNETOR_MAX_UPLOAD_MB: ${MAGNETOR_MAX_UPLOAD_MB:-10240}
+      MAGNETOR_TORRENT_PORT: "42069"
+      MAGNETOR_TORRENT_DHT: ${MAGNETOR_TORRENT_DHT:-true}
+      MAGNETOR_TORRENT_TRACKERS: ${MAGNETOR_TORRENT_TRACKERS:-}
+    ports:
+      # The web UI listens on localhost only; put a TLS reverse proxy in front to expose it.
+      - "127.0.0.1:${MAGNETOR_WEB_PORT:-8080}:8080"
+      - "42069:42069/tcp"
+      - "42069:42069/udp"
+    volumes:
+      - magnetor-data:/data
+
+volumes:
+  magnetor-data:
