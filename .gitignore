@@ -31,3 +31,8 @@ go.work.sum
 # Editor/IDE
 # .idea/
 # .vscode/
+
+# Runtime data: never commit user files or generated torrents
+/data/
+*.torrent
+/magnetor-drive

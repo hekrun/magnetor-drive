@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Magnetor Drive</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<section id="login" hidden>
+  <form id="login-form">
+    <h1>Magnetor Drive</h1>
+    <label>Username <input name="username" autocomplete="username" required></label>
+    <label>Password <input name="password" type="password" autocomplete="current-password" required></label>
+    <button type="submit">Sign in</button>
+    <p id="login-error" class="error" role="alert"></p>
+  </form>
+</section>
+
+<main id="app" hidden>
+  <header>
+    <h1>Magnetor Drive</h1>
+    <button id="logout" type="button">Sign out</button>
+  </header>
+  <p id="status" class="error" role="alert"></p>
+  <nav id="crumbs" aria-label="Folder path"></nav>
+  <div id="toolbar">
+    <button id="new-folder" type="button">New folder</button>
+    <button id="upload-btn" type="button">Upload</button>
+    <input id="upload-input" type="file" multiple hidden>
+    <span class="sep"></span>
+    <button data-action="download" type="button" disabled>Download</button>
+    <button data-action="preview" type="button" disabled>Preview</button>
+    <button data-action="rename" type="button" disabled>Rename</button>
+    <button data-action="move" type="button" disabled>Move</button>
+    <button data-action="copy" type="button" disabled>Copy</button>
+    <button data-action="delete" type="button" disabled>Delete</button>
+    <button data-action="torrent" type="button" disabled>Create torrent</button>
+  </div>
+  <div class="table-wrap">
+    <table id="files">
+      <thead><tr><th>Name</th><th>Size</th><th>Modified</th></tr></thead>
+      <tbody></tbody>
+    </table>
+  </div>
+  <section id="preview" hidden>
+    <div class="preview-head"><strong id="preview-name"></strong><button id="preview-close" type="button">Close</button></div>
+    <div id="preview-body"></div>
+  </section>
+  <section id="torrents">
+    <h2>Torrents</h2>
+    <p class="hint">Seeding reads the stored files in place. Editing, moving or deleting a source invalidates its torrent; create it again afterwards.</p>
+    <div id="torrent-list"></div>
+  </section>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
